@@ -1,0 +1,21 @@
+{
+  "name": "efp-micro-approval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3001",
+    "build": "vite build",
+    "preview": "vite preview --port 5001"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@originjs/vite-plugin-federation": "^1.3.7",
+    "typescript": "^5.6.3"
+  }
+}

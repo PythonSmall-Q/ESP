@@ -1,0 +1,42 @@
+{
+  "manifest_version": "2.0",
+  "name": "efp-plugin-weather",
+  "version": "1.0.0",
+  "description": "天气信息插件",
+  "author": {
+    "name": "EFP Team",
+    "email": "contact@efp.example.com",
+    "url": "https://efp.example.com"
+  },
+  "license": "MIT",
+  "platform": { "min_version": "2.0.0", "max_version": "3.0.0" },
+  "type": ["backend", "frontend"],
+  "categories": ["productivity", "integration"],
+  "keywords": ["weather", "dashboard", "widget"],
+  "entry_points": {
+    "backend": "dist/backend/index.js",
+    "frontend": "dist/frontend/index.jsx"
+  },
+  "dependencies": { "efp-sdk": "^2.0.0", "axios": "^1.3.0" },
+  "peer_dependencies": { "react": "^18.2.0" },
+  "permissions": [
+    { "resource": "api.weather", "actions": ["read"], "description": "访问天气API" },
+    { "resource": "user.location", "actions": ["read"], "description": "读取用户位置信息" }
+  ],
+  "hooks": [
+    { "name": "dashboard.widget", "description": "在仪表板添加天气小部件" },
+    { "name": "user.after_login", "description": "用户登录后显示天气信息" }
+  ],
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "api_key": { "type": "string", "description": "天气API密钥" },
+      "default_city": { "type": "string", "description": "默认城市", "default": "北京" },
+      "units": { "type": "string", "enum": ["metric", "imperial"], "default": "metric" }
+    },
+    "required": ["api_key"]
+  },
+  "ui": {
+    "dashboard_widget": { "title": "天气信息", "description": "显示当前天气和预报", "icon": "sun", "size": "medium", "position": "top-right" }
+  }
+}

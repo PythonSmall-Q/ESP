@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label":"run shell frontend","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"apps/shell-frontend"}},
+    {"label":"run micro approval","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"apps/microapps/approval"}},
+    {"label":"run micro project","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"apps/microapps/project"}},
+    {"label":"run micro file","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"apps/microapps/file"}},
+    {"label":"run task-service","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"services/task-service"}},
+    {"label":"run file-service (go)","type":"shell","command":"go","args":["run","./cmd/main.go"],"options":{"cwd":"services/file-service"}},
+    {"label":"build user-service","type":"shell","command":"gradlew","args":["bootJar"],"options":{"cwd":"services/user-service"}},
+    {"label":"run user-service","type":"shell","command":"gradlew","args":["bootRun"],"options":{"cwd":"services/user-service"}},
+    {"label":"run approval-service","type":"shell","command":"gradlew","args":["bootRun"],"options":{"cwd":"services/approval-service"}},
+    {"label":"run project-service","type":"shell","command":"gradlew","args":["bootRun"],"options":{"cwd":"services/project-service"}},
+    {"label":"run calendar-service","type":"shell","command":"gradlew","args":["bootRun"],"options":{"cwd":"services/calendar-service"}},
+    {"label":"run communication-service","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"services/communication-service"}},
+    {"label":"run asset-service (go)","type":"shell","command":"go","args":["run","./cmd/main.go"],"options":{"cwd":"services/asset-service"}}
+    ,{"label":"run booking-service","type":"shell","command":"gradlew","args":["bootRun"],"options":{"cwd":"services/booking-service"}}
+    ,{"label":"run selfservice-service","type":"shell","command":"gradlew","args":["bootRun"],"options":{"cwd":"services/selfservice-service"}}
+    ,{"label":"run knowledge-service","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"services/knowledge-service"}}
+    ,{"label":"run reporting-service","type":"shell","command":"pnpm","args":["dev"],"options":{"cwd":"services/reporting-service"}}
+  ]
+}

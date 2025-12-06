@@ -1,0 +1,20 @@
+groups:
+  - name: efp-alerts
+    rules:
+      - alert: EFPServiceDown
+        expr: up{job="efp-frontend"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          environment: production
+        annotations:
+          summary: "EFP前端服务不可用"
+          description: "{{ $labels.instance }} 上的EFP前端服务已宕机超过2分钟"
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "高错误率检测"
+          description: "错误率超过5%，当前值为 {{ $value | humanizePercentage }}"
