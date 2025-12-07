@@ -1,0 +1,105 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: efp-gateway
+  namespace: efp-production
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/hsts: "true"
+    nginx.ingress.kubernetes.io/hsts-max-age: "31536000"
+spec:
+  rules:
+    - host: efp.local
+      http:
+        paths:
+          - path: /api/user(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 8080
+          - path: /api/approval(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: approval-service
+                port:
+                  number: 8080
+          - path: /api/project(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: project-service
+                port:
+                  number: 8080
+          - path: /api/calendar(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: calendar-service
+                port:
+                  number: 8080
+          - path: /api/booking(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: booking-service
+                port:
+                  number: 8080
+          - path: /api/selfservice(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: selfservice-service
+                port:
+                  number: 8080
+          - path: /api/task(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: task-service
+                port:
+                  number: 3000
+          - path: /api/communication(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: communication-service
+                port:
+                  number: 3001
+          - path: /api/knowledge(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: knowledge-service
+                port:
+                  number: 3002
+          - path: /api/reporting(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: reporting-service
+                port:
+                  number: 3003
+          - path: /api/file(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: file-service
+                port:
+                  number: 8081
+          - path: /api/asset(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: asset-service
+                port:
+                  number: 8082
+  tls:
+    - hosts:
+        - efp.local
+      secretName: efp-gateway-tls

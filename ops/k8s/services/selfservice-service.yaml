@@ -13,11 +13,27 @@ spec:
       labels:
         app: selfservice-service
     spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 2000
       containers:
       - name: selfservice-service
         image: efp/selfservice-service:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsUser: 1000
+          runAsGroup: 1000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
         readinessProbe:
           httpGet:
             path: /health
