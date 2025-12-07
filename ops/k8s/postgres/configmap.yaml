@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: efp-production
+data:
+  init.sql: |
+    CREATE SCHEMA IF NOT EXISTS booking AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS user_service AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS project AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS approval AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS calendar AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS selfservice AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS communication AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS task AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS knowledge AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS reporting AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS file_service AUTHORIZATION efp_user;
+    CREATE SCHEMA IF NOT EXISTS asset AUTHORIZATION efp_user;
