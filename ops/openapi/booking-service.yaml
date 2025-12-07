@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Booking Service API
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+  /api/v1/rooms/availability:
+    get:
+      summary: Get room availability
+      parameters:
+        - in: query
+          name: building
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rooms available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  building:
+                    type: string
+                  rooms:
+                    type: array
+                    items:
+                      type: string
+  /api/v1/bookings:
+    post:
+      summary: Create booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingCreated'
+        '400':
+          description: Validation error
+components:
+  schemas:
+    CreateBookingRequest:
+      type: object
+      required: [roomId, title, startTime, endTime]
+      properties:
+        roomId:
+          type: string
+        title:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+    BookingCreated:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        roomId:
+          type: string
+        title:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string

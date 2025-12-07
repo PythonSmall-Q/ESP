@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: SERVICE_NAME
+  namespace: efp-production
+spec:
+  selector:
+    matchLabels:
+      app: SERVICE_NAME
+  namespaceSelector:
+    matchNames:
+      - efp-production
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>EFP API Docs</title>
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+    <style>body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif}nav{position:fixed;left:0;top:0;width:280px;height:100vh;overflow:auto;background:#0f172a;color:#fff;padding:16px}main{margin-left:280px}a{color:#93c5fd;display:block;margin:8px 0;text-decoration:none}</style>
+  </head>
+  <body>
+    <nav>
+      <h2>EFP APIs</h2>
+      <a href="?spec=booking-service.yaml">Booking Service</a>
+      <!-- Add links for other services as specs are created -->
+    </nav>
+    <main>
+      <redoc spec-url="../openapi/booking-service.yaml"></redoc>
+      <script>
+        const params = new URLSearchParams(location.search);
+        const spec = params.get('spec') || 'booking-service.yaml';
+        document.querySelector('redoc').setAttribute('spec-url', `../openapi/${spec}`);
+      </script>
+    </main>
+  </body>
+</html>
